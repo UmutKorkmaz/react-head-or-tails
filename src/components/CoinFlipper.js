@@ -34,14 +34,6 @@ class CoinFlipper extends Component {
     }, 1000);
   };
 
-  say = (coin) => {
-    let counter = 0;
-    for (const input of this.state.gelenler) {
-      if (input === coin) counter += 1;
-    }
-    return counter;
-  };
-
   render() {
     const { currentStatus, donuyor, gelenler } = this.state;
     const atisYapildi = gelenler.length>0;
