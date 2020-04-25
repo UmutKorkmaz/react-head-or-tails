@@ -44,17 +44,26 @@ class CoinFlipper extends Component {
 
   render() {
     const { currentStatus, donuyor, gelenler } = this.state;
+    const atisYapildi = gelenler.length>0;
     return (
       <div>
         <h1>Yazı mı? Tura mı?</h1>
         <Coin currentStatus={currentStatus} donuyor={donuyor} />
         <button onClick={this.atisYap}>Atış yap</button>
-        <div>
-          Gelen yazı sayısı: {this.say("yazi")}
-          <br />
-          Gelen tura sayısı: {this.say("tura")}
-        </div>
-        {gelenler.length > 0 && !donuyor && <h3>{currentStatus} geldi</h3>}
+        {
+          <>
+          <div>Toplam Atis: {gelenler.length}</div>
+          {
+            options.map((option) =>{
+              const sayi= gelenler.filter((item) => item ===option);
+              return <div>{option} sayisi: {sayi.length}</div>
+            })
+          }
+          </>
+        }
+        {
+         atisYapildi && !donuyor && <h3>{currentStatus} geldi</h3> 
+        }
       </div>
     );
   }
